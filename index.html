@@ -4,68 +4,168 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+            defer></script>
     </head>
-    <body>
+    <body class="flex flex-col h-screen justify-between">
         <!-- Header -->
         <header
-            class="flex flex-row justify-between items-center text-center shadow-sm">
+            class="flex flex-row justify-between items-center text-center shadow-sm rounded-lg">
             <div class="flex items-center p-4">
                 <img
                     class="h-10 object-contain"
                     src="assets/hf-logo-with-title.png" />
-                <h1 class="font-bold text-1xl">Transformers</h1>
+                <h1 class="font-bold text-xl">Transformers</h1>
             </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-                <div class="relative">
-                    <button
-                        type="button"
-                        class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900"
-                        aria-expanded="false">
-                        Product
-                        <svg
-                            class="size-5 flex-none text-gray-400"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            data-slot="icon">
-                            <path
-                                fill-rule="evenodd"
-                                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div
-                        class="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white ring-1 shadow-lg ring-gray-900/5">
-                        <div class="p-4">
-                            <div
-                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
-                                <div
-                                    class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <svg
-                                        class="size-6 text-gray-600 group-hover:text-indigo-600"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        aria-hidden="true"
-                                        data-slot="icon">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div
+                x-data="{ open: false }"
+                class="relative hidden lg:flex lg:gap-x-12">
+                <!-- Button to toggle dropdown -->
+                <button
+                    type="button"
+                    @click="open = !open"
+                    class="flex items-center text-sm font-semibold text-gray-900 mr-30"
+                    aria-expanded="true">
+                    Links
+                    <svg
+                        class="w-5 h-5 flex-none text-gray-400"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true">
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div
+                    x-show="open"
+                    @click.outside="open = false"
+                    class="absolute right-5 mt-7 w-180 origin-top bg-white shadow-lg rounded-md py-2"
+                    x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95">
+                    <a
+                        href="https://stackoverflow.com/questions/59812003/tailwindcss-fixed-sticky-footer-on-the-bottom"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >https://stackoverflow.com/questions/59812003/tailwindcss-fixed-sticky-footer-on-the-bottom</a
+                    >
+                    <a
+                        href="https://tailwindcss.com/docs"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >https://tailwindcss.com/docs</a
+                    >
+                    <a
+                        href="https://alpinejs.dev/component/dropdown"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >https://alpinejs.dev/component/dropdown</a
+                    >
+                    <a
+                        href="https://alpinejs.dev/component/dropdown"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >https://alpinejs.dev/component/dropdown</a
+                    >
                 </div>
             </div>
         </header>
+        <!-- https://stackoverflow.com/questions/59812003/tailwindcss-fixed-sticky-footer-on-the-bottom -->
+        <main class="mb-auto mr-30 ml-30">
+            <!-- Description -->
+            <p class="text-xl font-bold mb-3 mt-2">Description</p>
+            <p>
+                Transformers is a library of pretrained natural language
+                processing, computer vision, audio, and multimodal models for
+                inference and training.
+            </p>
+            <!-- Main Usage -->
+            <p class="text-xl font-bold mb-3 mt-10">Main Usage</p>
+            <p>
+                Use Transformers to train models on your data, build inference
+                applications, and generate text with large language models.
+            </p>
+            <!-- Features -->
+            <p class="text-xl font-bold mb-3 mt-10">Features</p>
+            <p>
+                <a
+                    href="https://huggingface.co/docs/transformers/en/pipeline_tutorial"
+                    class="font-semibold underline"
+                    >Pipeline</a
+                >: Simple and optimized inference class for many machine
+                learning tasks like text generation, image segmentation,
+                automatic speech recognition, document question answering, and
+                more.
+            </p>
+            <p>
+                <a
+                    href="https://huggingface.co/docs/transformers/en/trainer"
+                    class="font-semibold underline"
+                    >Trainer</a
+                >: A comprehensive trainer that supports features such as mixed
+                precision, torch.compile, and FlashAttention for training and
+                distributed training for PyTorch models.
+            </p>
+            <p>
+                <a
+                    href="https://huggingface.co/docs/transformers/en/llm_tutorial"
+                    class="font-semibold underline"
+                    >generate</a
+                >: Fast text generation with large language models (LLMs) and
+                vision language models (VLMs), including support for streaming
+                and multiple decoding strategies.
+            </p>
+
+            <!-- Installation -->
+            <p class="text-xl font-bold mb-3 mt-10">Installation</p>
+            <p class="font-bold">Virtual environment</p>
+            <pre
+                class="bg-gray-100 text-gray-900 rounded-lg text-wrap break-words h-25">
+                <code>
+    python -m venv .env
+    source ./env/bin/activate
+                </code>
+              </pre>
+            <p class="font-bold mt-5">Python (pip)</p>
+            <pre
+                class="bg-gray-100 text-gray-900 rounded-lg text-wrap break-words h-18">
+                  <code>
+    pip install transformers
+                  </code>
+                </pre>
+            <p class="font-bold mt-5">PyTorch</p>
+            <pre
+                class="bg-gray-100 text-gray-900 rounded-lg text-wrap break-words h-25">
+                      <code>
+    pip install 'transformers[torch]'
+    uv pip install 'transformers[torch]'
+                      </code>
+                    </pre>
+            <p class="font-bold mt-5">Source code</p>
+            <pre
+                class="bg-gray-100 text-gray-900 rounded-lg text-wrap break-words h-18">
+                              <code>
+    pip install git+https://github.com/huggingface/transformers
+                              </code>
+                            </pre>
+        </main>
         <!-- Footer -->
-        <footer></footer>
+        <footer class="bg-white rounded-lg shadow-sm mt-10">
+            <div class="w-full mx-auto p-4">
+                <div class="sm:flex sm:items-center sm:justify-start">
+                    <p class="mr-10"><b>Name:</b> Denis Khan</p>
+                    <p><b>Mail:</b> khan.da@dvfu.ru</p>
+                </div>
+            </div>
+            <hr class="border-gray-200 mx-auto" />
+            <span
+                class="block text-sm text-gray-500 sm:text-center dark:text-gray-400 p-2"
+                >Date of creation: 2025</span
+            >
+        </footer>
     </body>
 </html>
